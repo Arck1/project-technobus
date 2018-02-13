@@ -55,6 +55,7 @@ $(function switchs() {
         if(!sl){
             sl = document.querySelector("#scheduleList0 .next");
         }
+        
         //console.log(sl);
         sl.scrollIntoView();
 
