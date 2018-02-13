@@ -29,7 +29,7 @@
 //     });
 // });
 $(function switchs() {
-    $("#scheduleList1").hide();
+
     $("#toTechn").click(function () {
         currentTableId = 0;
         $("#toTechn").addClass("is-active");
@@ -37,6 +37,27 @@ $(function switchs() {
         $("#timelineDirection").removeClass("tube");
         $("#scheduleList1").hide();
         $("#scheduleList0").show();
+
+        // let b = $("#scheduleList0 .success");
+        // if(b.length == 0){
+        //     b = $("#scheduleList0 .alert");
+        // }
+        // if(b.length == 0){
+        //     b = $("#scheduleList0 .next");
+        // }
+        // console.log(b);
+        //$('#timelineDirection').animate({scrollTop: b.offset().top-100});
+
+        let sl = document.querySelector("#scheduleList0 .succes");
+        if(!sl){
+            sl = document.querySelector("#scheduleList0 .alert");
+        }
+        if(!sl){
+            sl = document.querySelector("#scheduleList0 .next");
+        }
+        //console.log(sl);
+        sl.scrollIntoView();
+
     });
 
     $("#toMetro").click(function () {
@@ -46,5 +67,26 @@ $(function switchs() {
         $("#timelineDirection").addClass("tube");
         $("#scheduleList1").show();
         $("#scheduleList0").hide();
+
+        // let b = $("#scheduleList1 .success");
+        // if(b.length == 0){
+        //     b = $("#scheduleList1 .alert");
+        // }
+        // if(b.length == 0){
+        //     b = $("#scheduleList1 .next");
+        // }
+
+        //$('#timelineDirection').animate({scrollTop: b.offset().top-100});
+
+
+        let sl = document.querySelector("#scheduleList1 .succes");
+        if(!sl){
+            sl = document.querySelector("#scheduleList1 .alert");
+        }
+        if(!sl){
+            sl = document.querySelector("#scheduleList1 .next");
+        }
+        //console.log(sl);
+        sl.scrollIntoView();
     });
 });
