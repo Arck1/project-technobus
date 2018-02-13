@@ -2,6 +2,10 @@
  * Модуль работы с гугл таблицами
  */
 var currentTableId = 0;
+var googleSpreadsheet;
+var tableViewer;
+var apiObj;
+
 $(function googleApi() {
 
     class GoogleSpreadsheet {
@@ -36,7 +40,6 @@ $(function googleApi() {
                     console.log("onLine updateStorage()")
                     this.updateStorage();
                 }
-                ;
             }
         }
 
@@ -68,6 +71,7 @@ $(function googleApi() {
             });
             this.googleSpreadsheetLoad("Объявления", "A:B", (result) => {
                 this.tableViewer.addInfoList(result);
+                localStorage.setItem('info', JSON.stringify(result));
             });
             this.showTimetable(currentTableId);
             localStorage.setItem('DATE', Date());
@@ -221,9 +225,9 @@ $(function googleApi() {
     let url = "https://docs.google.com/spreadsheet/pub?key=1VwgzSFxVRu2Z-9tvF8wimO2m3BmuW4ngcST5uGSRYRg&output=html";
     const key = "AIzaSyC6gFH_bbSeMSIzEexKIUQ3MGE1MK2mBdo";
     const spreadsheetId = "1Xdje643qsnGXaOjU70larjh-UFTh6Bt9ii83a7t68Oo";
-    const googleSpreadsheet = new GoogleSpreadsheet(key, spreadsheetId);
-    const tableViewer = new TableViewer("#scheduleList", ".info-list");
-    const apiObj = new API(tableViewer, googleSpreadsheet);
+    googleSpreadsheet = new GoogleSpreadsheet(key, spreadsheetId);
+    tableViewer = new TableViewer("#scheduleList", ".info-list");
+    apiObj = new API(tableViewer, googleSpreadsheet);
 
     //setLanguage("ru");
 });
