@@ -22,7 +22,17 @@ $(function googleApi() {
             this.tableViewer = tableViewer;
             this.googleSpreadsheet = googleSpreadsheet;
             if (localStorage.length === 0 || localStorage.getItem(0) == null || localStorage.getItem(1) == null) {
+                //не трогать!
+                $.ajaxSetup({
+                    async: false
+                });
                 this.saveToLocalStorage();
+                $.ajaxSetup({
+                    async: true
+                });
+                while(localStorage.length === 0 || localStorage.getItem(0) == null || localStorage.getItem(1) == null || localStorage.getItem('info') == null){
+
+                }
                 console.log("first saveToLocalStorage()")
             } else {
                 console.log("first showTimetable()")
@@ -100,20 +110,9 @@ $(function googleApi() {
          * @param {string} infoClass Класс в который добавляем
          */
         addInfoList(infoJSON) {
-            // console.log(`f: addTableList(infoJSON=`,
-            //     infoJSON,
-            //     `, infoClass= ${this.infoClass})`);
-            // let infoHtmlString = "";
-            // infoJSON.values.shift();
-            // infoJSON.values.forEach(function (msg) {
-            //     infoHtmlString += `<p class="info-list--elem">
-            // 						<span class="info-list--elem__title">
-            // 							${msg[0]}
-            // 						</span>
-            // 						${msg[1]}
-            // 					</p>`;
-            // });
-            // $(this.infoClass).append(infoHtmlString);
+            let notifications = infoJSON.values;
+            notifications.shift();
+            infoList = notifications;
         }
 
         /**
@@ -153,7 +152,11 @@ $(function googleApi() {
             for (let i = 0; i < timeSort.length; i++) {
                 timeSort[i] = timeSort[i].sort(compareMin);
             }
-
+            if(id === 0)
+                sortedTimeLists.to = timeSort;
+            else
+                sortedTimeLists.from = timeSort;
+            console.log(sortedTimeLists);
             //console.log(JSON.stringify(timeSort));
 
             for (hour in timeSort) {

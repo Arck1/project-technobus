@@ -12,7 +12,7 @@ $(function () {
             res = "0" + hour;
         else
             res = hour;
-        if (minuts < 9) {
+        if (minuts < 10) {
             res += ":0" + minuts;
         }
         else {
@@ -22,13 +22,17 @@ $(function () {
     }
 
     function setDate() {
+
+        $(".break").remove();
+
         let listTo = $("#scheduleList0").get(0).children;
         let listFrom = $("#scheduleList1").get(0).children;
         let selected_item = listTo[0];
         let index = 0;
         let minDiffFromTime = 90000;
         let time = new Date();
-
+        // time.setHours(17);
+        // time.setMinutes(12);
         let timeInMins = time.getHours() * 60 + time.getMinutes();
 
         //Поиск и выделение элемента в таблице к технополису
@@ -63,26 +67,55 @@ $(function () {
         let divInfo = selected_item.children[1];
         let [h, m] = divTime.innerText.split(':');
 
-        $("ul #scheduleList0 li .success").removeClass();
-        $("ul #scheduleList0 li .alert").removeClass();
+        // $(".success").removeClass();
+        // $(".alert").removeClass();
+        // $(".next").removeClass();
+        $("ul #scheduleList0 li .next").removeClass();
+
+
+
         let hourDiff = Math.floor(minDiffFromTime / 60);
         let minutsDiff = minDiffFromTime % 60;
 
 
-
+        if (minDiffFromTime >= 40) {
+            selected_item.className = "bstop";
+            $(".bstop").after("<li class=\"break fone\"><div class=\"time-info\">" +
+            "<div class=\"info\">Перерыв "+minDiffFromTime+" минут</div>" +
+            "<div class=\"desc\">Воспользуйтесь общественным транспортом</div></div></li>");
+        }
+        else {
+            $( ".break fone" ).remove();
+        }
 
         if (minDiffFromTime > 5 && minDiffFromTime <= 10) {
-            selected_item.className = "success";
-
+            //selected_item.className = "success";
+            $(selected_item).addClass("success");
             divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
         }
         else {
             if(minDiffFromTime <= 5) {
-                selected_item.className = "alert";
+                //selected_item.className = "alert";
+                $(selected_item).addClass("alert");
+                divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
+            }
+            else {
                 divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
             }
         }
         $(selected_item).addClass("next");
+
+        if(index < listTo.length - 1){
+            let nextTime = listTo[index + 1].children[0];
+
+            let [h, m] = nextTime.innerText.split(':');
+            let nextTimeInMinutes = parseInt(h) * 60 + parseInt(m);
+            let difMins = nextTimeInMinutes - timeInMins;
+            let hourDiff = Math.floor(difMins / 60);
+            let minutsDiff = difMins % 60;
+
+            divInfo.children[1].innerText = "Следующий за ним - через " + getDiffTime(hourDiff, minutsDiff);
+        }
 
 
         //Поиск и выделение элемента в таблице к метро
@@ -118,25 +151,53 @@ $(function () {
         divTime = selected_item.children[0];
         divInfo = selected_item.children[1];
 
-        $("ul #scheduleList1 li .success").removeClass();
-        $("ul #scheduleList1 li .alert").removeClass();
+        $("ul #scheduleList1 li .next").removeClass();
+        //$("ul #scheduleList1 li .alert").removeClass();
 
         hourDiff = Math.floor(minDiffFromTime / 60);
         minutsDiff = minDiffFromTime % 60;
 
+        if (minDiffFromTime >= 40) {
+            selected_item.className = "bstop";
+            $(".bstop").after("<li class=\"break ftwo\"><div class=\"time-info\">" +
+            "<div class=\"info\">Перерыв "+minDiffFromTime+" минут</div>" +
+            "<div class=\"desc\">Воспользуйтесь общественным транспортом</div></div></li>");
+
+            $(".ftwo").hide();
+        }
+        else {
+            $( ".break ftwo" ).remove();
+        }
+
         if (minDiffFromTime > 5 && minDiffFromTime <= 10) {
-            selected_item.className = "success";
+            $(selected_item).addClass("success");
+            //selected_item.className = "success";
 
             divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
         }
         else {
             if(minDiffFromTime <= 5){
-                selected_item.className = "alert";
+                $(selected_item).addClass("alert");
+                //selected_item.className = "alert";
                 divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
 
             }
+            else {
+                divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
+            }
         }
         $(selected_item).addClass("next");
+
+        if(index < listFrom.length - 1){
+            let nextTime = listFrom[index + 1].children[0];
+            let [h, m] = nextTime.innerText.split(':');
+            let nextTimeInMinutes = parseInt(h) * 60 + parseInt(m);
+            let difMins = nextTimeInMinutes - timeInMins;
+            let hourDiff = Math.floor(difMins / 60);
+            let minutsDiff = difMins % 60;
+
+            divInfo.children[1].innerText = "Следующий за ним - через " + getDiffTime(hourDiff, minutsDiff);
+        }
     }
 
     setDate();

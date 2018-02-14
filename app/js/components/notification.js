@@ -1,4 +1,3 @@
-var notificationNumber = 0;
 var notificationList;
 
 function hideNotification() {
@@ -8,7 +7,7 @@ function hideNotification() {
 function getNotification() {
 
 
-    let notification = notificationList[notificationNumber];
+    let notification = infoList[0];
 
     $("#title_notification").text(notification[0]);
     $("#output_notification").text(notification[1]);
@@ -20,11 +19,8 @@ $(function () {
     $('#notification').click(function () {
         hideNotification();
     });
-    let notificationJSON = JSON.parse(localStorage.getItem('info'));
-    console.log(notificationJSON);
-    let notification = notificationJSON.values;
-    notification.shift();
-    notificationList = notification;
+
+    infoList = JSON.parse(localStorage.getItem('info')).values;
 
     getNotification();
 });

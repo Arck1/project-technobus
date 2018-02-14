@@ -7,6 +7,9 @@ var currentTableId = 0;
 var googleSpreadsheet;
 var tableViewer;
 var apiObj;
+var  infoList = [];
+var sortedTimeLists = { 'to' : [], 'from' : []};
+var notificationNumber = 0;
 
 
 /**
