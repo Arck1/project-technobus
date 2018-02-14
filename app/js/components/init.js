@@ -2,6 +2,7 @@ $(function () {
     $("#scheduleList1").hide();
     let listTo = $("#scheduleList0").get(0).children;
     let listFrom = $("#scheduleList1").get(0).children;
+
     let lastLi = listTo[listTo.length - 1];
     lastLi.className = "warning";
 

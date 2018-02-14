@@ -112,21 +112,38 @@ window.onload = function () {
     </section>
     <!-- TIMELINE - ENDS -->
 
+    <!-- SECOND_PAGE - BEGINS -->
+    <div id="first_scheme">
+        <p>Здесь должна быть схема1, у метро</p>
+    </div>
+    <div id="second_scheme">
+        <p>Здесь должна быть схема2, у Технополиса</p>
+    </div>
+    <!-- SECOND_PAGE - BEGINS -->
+
+    <!-- THIRD_PAGE - BEGINS -->
+    <div id="first_alt_ways">
+        <p>Здесь должны быть альтернативные маршруты, у метро</p>
+    </div>
+    <div id="second_alt_ways">
+        <p>Здесь должны быть альтернативные маршруты, у Технополиса</p>
+    </div>
+    <!-- THIRD_PAGE - BEGINS -->
 
     <footer>
         <!-- EXTRA NAVIGATION - BEGINS -->
         <nav class="nav-extra">
-            <a href="javascript:;" class="is-active">
+            <a id="First_page" class="is-active" onclick="transition1()">
                 <svg class="icon-clock">
                     <use xlink:href="assets/svg/defs.svg#icon-clock"></use>
                 </svg>
             </a>
-            <a href="javascript:;">
+            <a id="Second_page" onclick="transition2()">
                 <svg class="icon-bag">
                     <use xlink:href="assets/svg/defs.svg#icon-bag"></use>
                 </svg>
             </a>
-            <a href="javascript:;">
+            <a id="Third_page" onclick="transition3()">
                 <svg class="icon-compass">
                     <use xlink:href="assets/svg/defs.svg#icon-compass"></use>
                 </svg>

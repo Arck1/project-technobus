@@ -35,16 +35,25 @@ $(function googleApi() {
                 }
                 console.log("first saveToLocalStorage()")
             } else {
+
+
+                if (navigator.onLine) {
+                    $.ajaxSetup({
+                        async: false
+                    });
+                    this.saveToLocalStorage();
+                    $.ajaxSetup({
+                        async: true
+                    });
+                    console.log("onLine updateStorage()");
+                    this.updateStorage();
+                    //this.showTimetable(0);
+                }
                 console.log("first showTimetable()")
                 try {
                     this.showTimetable(0);
                 } catch (err) {
                     console.error("showTimetable: ", err);
-                }
-
-                if (navigator.onLine) {
-                    console.log("onLine updateStorage()")
-                    this.updateStorage();
                 }
             }
         }
@@ -162,11 +171,44 @@ $(function googleApi() {
             for (hour in timeSort) {
                 for(index in timeSort[hour]){
                     if (hour !== "" && timeSort[hour][index].min !== "") {
-                        timetableRowHtmlString += `<li class="">
+                        let weekCount = 0;
+                        let weekSelect = timeSort[hour][index].mins;
+                        for(let i = 0; i < weekSelect.length; i++){
+                            if(weekSelect[i].length > 0)
+                                weekCount++;
+                        }
+                        let shadowClass = "";
+                        let specialInfo = "";
+                        if(weekCount < 5){
+                            let now = new Date();
+                            let weekDayNumber = now.getDay();
+
+                            let itIsSuperLongIteratorButInVeryUseful = weekDayNumber - 1;
+                            if(weekSelect[itIsSuperLongIteratorButInVeryUseful].length === 0){
+                                    shadowClass = "shadow";
+                                    specialInfo = "В ";
+                                    for(let i = 0; i < weekSelect.length; i++){
+                                        if(weekSelect[i].length > 0){
+                                            specialInfo += inWeekDays[(i + 1) % 7] + " ";
+                                        }
+                                    }
+                            }
+                            else {
+                                  shadowClass = 'redline';
+                                specialInfo = "Только в ";
+                                for(let i = 0; i < weekSelect.length; i++){
+                                    if(weekSelect[i].length > 0){
+                                        specialInfo += inWeekDays[(i + 1) % 7] + " ";
+                                    }
+                                }
+                            }
+
+                        }
+                        timetableRowHtmlString += `<li class="${shadowClass} ">
                                                 <div class="time">${hour}:${timeSort[hour][index].min}</div>
                                                 <div class="time-info">
                                                     <div class="info"></div>
-                                                    <div class="desc"></div>
+                                                    <div class="desc">${specialInfo}</div>
                                                 </div>
                                                  </li>`;
                     }
