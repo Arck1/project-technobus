@@ -1,24 +1,22 @@
 var notificationNumber = 0;
 var notificationList;
 
-function hideNotification(){
+function hideNotification() {
     $('#notification').hide();
-    notificationNumber++;
-    getNotification();
 }
 
-function getNotification(){
+function getNotification() {
 
-    if(notificationNumber < notificationList.length){
-        let notification = notificationList[notificationNumber];
 
-        $("#title_notification").text(notification[0]);
-        $("#output_notification").text(notification[1]);
-        $('#notification').show();
-    }
+    let notification = notificationList[notificationNumber];
+
+    $("#title_notification").text(notification[0]);
+    $("#output_notification").text(notification[1]);
+    $('#notification').show();
+
 }
 
-$(function(){
+$(function () {
     $('#notification').click(function () {
         hideNotification();
     });
@@ -28,5 +26,5 @@ $(function(){
     notification.shift();
     notificationList = notification;
 
-   getNotification();
+    getNotification();
 });

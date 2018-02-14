@@ -1,5 +1,13 @@
+//Константы и глобальные переменные
+//
 const days = ['monday', 'tuesday', 'tednesday', 'thursday', 'friday', 'saturday','sunday'];
 const fullDays = ['fullMonday', 'fullTuesday', 'fullTednesday', 'fullThursday', 'fullFriday', 'fullSaturday','fullSunday'];
+
+var currentTableId = 0;
+var googleSpreadsheet;
+var tableViewer;
+var apiObj;
+
 
 /**
  * Установка языка сайта

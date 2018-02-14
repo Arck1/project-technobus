@@ -1,10 +1,6 @@
 /**
  * Модуль работы с гугл таблицами
  */
-var currentTableId = 0;
-var googleSpreadsheet;
-var tableViewer;
-var apiObj;
 
 $(function googleApi() {
 

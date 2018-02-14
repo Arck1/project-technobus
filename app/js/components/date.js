@@ -4,7 +4,7 @@
 
 $(function () {
     /**
-     * Установка текущей даты, поиск следующей даты в таблице
+     * Установка текущей даты, поиск следующей даты в таблице, выделение ближайшего рейса
      */
     function getDiffTime(hour, minuts) {
         let res = "";
@@ -31,6 +31,7 @@ $(function () {
 
         let timeInMins = time.getHours() * 60 + time.getMinutes();
 
+        //Поиск и выделение элемента в таблице к технополису
         for (let i = 0; i < listTo.length; i++) {
             let li = listTo[i];
             let divTime = li.children[0];
@@ -47,7 +48,8 @@ $(function () {
                 // console.log(minDiffFromTime);
             }
         }
-        if(minDiffFromTime == 90000){
+
+        if(minDiffFromTime === 90000){
             let divTime = listTo[0].children[0];
             let divInfo = listTo[0].children[1];
 
@@ -75,11 +77,15 @@ $(function () {
             divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
         }
         else {
-            selected_item.className = "alert";
-            divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
+            if(minDiffFromTime <= 5) {
+                selected_item.className = "alert";
+                divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
+            }
         }
         $(selected_item).addClass("next");
 
+
+        //Поиск и выделение элемента в таблице к метро
         minDiffFromTime = 90000;
         index = 0;
         selected_item = listFrom[0];
@@ -124,9 +130,11 @@ $(function () {
             divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
         }
         else {
-            selected_item.className = "alert";
-            divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
+            if(minDiffFromTime <= 5){
+                selected_item.className = "alert";
+                divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
 
+            }
         }
         $(selected_item).addClass("next");
     }
