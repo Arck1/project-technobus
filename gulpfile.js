@@ -25,8 +25,8 @@ gulp.task('doc', function (cb) {
 
 gulp.task("common-js", function () {
     return gulp.src([
-        'app/js/components/*.js',
         'app/js/common.js',
+        'app/js/components/*.js'
     ])
         .pipe(babel({
             //plugins: ['transform-runtime'],
