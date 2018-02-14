@@ -49,15 +49,14 @@ $(function switchs() {
         //$('#timelineDirection').animate({scrollTop: b.offset().top-100});
 
         let sl = document.querySelector("#scheduleList0 .succes");
-        if(!sl){
+        if (!sl) {
             sl = document.querySelector("#scheduleList0 .alert");
         }
-        if(!sl){
+        if (!sl) {
             sl = document.querySelector("#scheduleList0 .next");
         }
-        
-        //console.log(sl);
-        sl.scrollIntoView();
+
+        $('#timelineDirection').animate({scrollTop: $("#scheduleList0 li.next").offset().top - $("#scheduleList0").offset().top - 60});
 
     });
 
@@ -80,14 +79,6 @@ $(function switchs() {
         //$('#timelineDirection').animate({scrollTop: b.offset().top-100});
 
 
-        let sl = document.querySelector("#scheduleList1 .succes");
-        if(!sl){
-            sl = document.querySelector("#scheduleList1 .alert");
-        }
-        if(!sl){
-            sl = document.querySelector("#scheduleList1 .next");
-        }
-        //console.log(sl);
-        sl.scrollIntoView();
+        $('#timelineDirection').animate({scrollTop: $("#scheduleList1 li.next").offset().top - $("#scheduleList1").offset().top - 60});
     });
 });

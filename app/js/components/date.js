@@ -67,21 +67,18 @@ $(function () {
         let minutsDiff = minDiffFromTime % 60;
 
 
-        if (minDiffFromTime > 10) {
-            selected_item.className = "next";
+
+
+        if (minDiffFromTime > 5 && minDiffFromTime <= 10) {
+            selected_item.className = "success";
+
             divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
         }
         else {
-            if (minDiffFromTime > 5) {
-                selected_item.className = "success";
-                divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
-            }
-            else {
-                selected_item.className = "alert";
-                divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
-            }
+            selected_item.className = "alert";
+            divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
         }
-
+        $(selected_item).addClass("next");
 
         minDiffFromTime = 90000;
         index = 0;
@@ -121,23 +118,17 @@ $(function () {
         hourDiff = Math.floor(minDiffFromTime / 60);
         minutsDiff = minDiffFromTime % 60;
 
-        if (minDiffFromTime > 10) {
-            selected_item.className = "next";
+        if (minDiffFromTime > 5 && minDiffFromTime <= 10) {
+            selected_item.className = "success";
+
             divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
         }
         else {
-            if (minDiffFromTime > 5) {
-                selected_item.className = "success";
+            selected_item.className = "alert";
+            divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
 
-                divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
-            }
-            else {
-                selected_item.className = "alert";
-                divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
-
-            }
         }
-
+        $(selected_item).addClass("next");
     }
 
     setDate();
