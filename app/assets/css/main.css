@@ -1,7 +1,7 @@
 #notification{
     display: flex;
     flex-direction: row;
-    /*z-index: 200;*/
+    z-index: 200;
     position: fixed;
     top: 48px;
     width: 100%;

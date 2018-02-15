@@ -36,19 +36,19 @@ $(function () {
         let lastLi = listTo[listTo.length - 1];
         $(lastLi).addClass("warning");
 
-        lastLi.children[1].children[1].innerHTML = "Всегда есть другие варианты &#10095;";
+        //lastLi.children[1].children[1].innerHTML = "Всегда есть другие варианты &#10095;";
 
         lastLi = listFrom[listFrom.length - 1];
         $(lastLi).addClass("warning");
-        lastLi.children[1].children[1].innerHTML = "Всегда есть другие варианты &#10095;";
+        //lastLi.children[1].children[1].innerHTML = "Всегда есть другие варианты &#10095;";
 
 
         let selected_item = listTo[0];
         let index = 0;
         let minDiffFromTime = 90000;
         let time = new Date();
-        // time.setHours(15);
-        // time.setMinutes(50);
+        // time.setHours(21);
+        // time.setMinutes(11);
         let timeInMins = time.getHours() * 60 + time.getMinutes();
 
         //Поиск и выделение элемента в таблице к технополису
@@ -106,9 +106,11 @@ $(function () {
                 $(selected_item).addClass("alert");
                 divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
             }
-            // else {
-            //     divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
-            // }
+            else if (minDiffFromTime > 10 && minDiffFromTime < 40) {
+                divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
+                divInfo.children[1].innerHTML = "Всегда есть другие варианты &#10095;";
+                $(selected_item).addClass("anotherVariants");
+            }
         }
         $(selected_item).addClass("next");
 
@@ -134,7 +136,7 @@ $(function () {
         }
 
 
-        if (index>0) {
+        if (index > 0) {
             [hv1, mi1] = listTo[index - 1].children[0].innerText.split(':');
             a = $(listTo[index]).hasClass('shadow');
             if (a) {
@@ -154,7 +156,7 @@ $(function () {
 
             $(selected_item).before("<li class=\"break fone\"><div class=\"time-info\">" +
                 "<div class=\"info\">Перерыв " + minDiffFromTime + " минут</div>" +
-                "<div class=\"desc\">Воспользуйтесь общественным транспортом</div></div></li>");
+                "<div class=\"desc\">Воспользуйтесь общественным транспортом &#10095</div></div></li>");
 
             if (currentTableId === 0)
                 $(".fone").show();
@@ -218,9 +220,11 @@ $(function () {
                 divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
 
             }
-            // else {
-            //     divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
-            // }
+            else if (minDiffFromTime > 10 && minDiffFromTime < 40) {
+                divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
+                divInfo.children[1].innerHTML = "Всегда есть другие варианты &#10095;";
+                $(selected_item).addClass("anotherVariants");
+            }
         }
         $(selected_item).addClass("next");
 
@@ -229,7 +233,7 @@ $(function () {
             let teta = !$(listFrom[nextIndex]).hasClass('shadow');
             while (nextIndex < listFrom.length && $(listFrom[nextIndex]).hasClass('shadow'))
                 nextIndex++;
-            if(nextIndex < listFrom.length){
+            if (nextIndex < listFrom.length) {
                 let nextTime = listFrom[nextIndex].children[0];
                 let [h, m] = nextTime.innerText.split(':');
                 let nextTimeInMinutes = parseInt(h) * 60 + parseInt(m);
@@ -265,7 +269,7 @@ $(function () {
         if (pereriv >= 40 && pereriv < 200) {
             $(selected_item).before("<li class=\"break ftwo\"><div class=\"time-info\">" +
                 "<div class=\"info\">Перерыв " + minDiffFromTime + " минут</div>" +
-                "<div class=\"desc\">Воспользуйтесь общественным транспортом &#8594;</div></div></li>");
+                "<div class=\"desc\">Воспользуйтесь общественным транспортом &#10095</div></div></li>");
 
             if (currentTableId === 1) {
                 $(".ftwo").show();
@@ -275,10 +279,10 @@ $(function () {
             $(".break ftwo").remove();
         }
 
-        $('li.break').click(function() {
+        $('li.break').click(function () {
             $('#Third_page').trigger('click');
         });
-        $('li.warning').click(function() {
+        $('li.anotherVariants').click(function () {
             $('#Third_page').trigger('click');
         });
     }
