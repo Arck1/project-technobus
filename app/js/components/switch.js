@@ -30,7 +30,7 @@
 // });
 
 
-$(function switchs() {
+$(function () {
 
     $('#First_page').click(function(){
         currentWindow = 1;

@@ -36,11 +36,11 @@ $(function () {
         let lastLi = listTo[listTo.length - 1];
         $(lastLi).addClass("warning");
 
-        lastLi.children[1].children[1].innerText = "Всегда есть другие варианты";
+        lastLi.children[1].children[1].innerHTML = "Всегда есть другие варианты &#10095;";
 
         lastLi = listFrom[listFrom.length - 1];
         $(lastLi).addClass("warning");
-        lastLi.children[1].children[1].innerText = "Всегда есть другие варианты";
+        lastLi.children[1].children[1].innerHTML = "Всегда есть другие варианты &#10095;";
 
 
         let selected_item = listTo[0];
@@ -106,13 +106,13 @@ $(function () {
                 $(selected_item).addClass("alert");
                 divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
             }
-            else {
-                divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
-            }
+            // else {
+            //     divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
+            // }
         }
         $(selected_item).addClass("next");
 
-        if (index < listTo.length - 1) {
+        if (index < listTo.length - 1 && ($(selected_item).hasClass('success') || $(selected_item).hasClass('alert'))) {
             let nextIndex = index + 1;
             while (nextIndex < listTo.length && $(listTo[nextIndex]).hasClass('shadow'))
                 nextIndex++;
@@ -132,7 +132,26 @@ $(function () {
             }
 
         }
-        if (minDiffFromTime >= 10 && minDiffFromTime < 200) {
+
+
+        if (index>0) {
+            [hv1, mi1] = listTo[index - 1].children[0].innerText.split(':');
+            a = $(listTo[index]).hasClass('shadow');
+            if (a) {
+                [hv2, mi2] = listTo[index + 1].children[0].innerText.split(':');
+            }
+            else {
+                [hv2, mi2] = listTo[index].children[0].innerText.split(':');
+            }
+            pereriv = mi2 - mi1 + hv2 * 60 - hv1 * 60;
+        }
+        else {
+            pereriv = 200;
+        }
+
+
+        if (pereriv >= 40 && pereriv < 200) {
+
             $(selected_item).before("<li class=\"break fone\"><div class=\"time-info\">" +
                 "<div class=\"info\">Перерыв " + minDiffFromTime + " минут</div>" +
                 "<div class=\"desc\">Воспользуйтесь общественным транспортом</div></div></li>");
@@ -143,7 +162,6 @@ $(function () {
         else {
             $(".break fone").remove();
         }
-
         //Поиск и выделение элемента в таблице к метро
 
         minDiffFromTime = 90000;
@@ -200,13 +218,13 @@ $(function () {
                 divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
 
             }
-            else {
-                divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
-            }
+            // else {
+            //     divInfo.children[0].innerText = 'Через ' + getDiffTime(hourDiff, minutsDiff);
+            // }
         }
         $(selected_item).addClass("next");
 
-        if (index < listFrom.length - 1) {
+        if (index < listFrom.length - 1 && ($(selected_item).hasClass('success') || $(selected_item).hasClass('alert'))) {
             let nextIndex = index + 1;
             let teta = !$(listFrom[nextIndex]).hasClass('shadow');
             while (nextIndex < listFrom.length && $(listFrom[nextIndex]).hasClass('shadow'))
@@ -227,21 +245,44 @@ $(function () {
 
         }
 
-        if (minDiffFromTime >= 10 && minDiffFromTime < 200) {
+        if (index > 0) {
+            [hv1, mi1] = listFrom[index - 1].children[0].innerText.split(':');
+            a = $(listFrom[index]).hasClass('shadow');
+            if (a) {
+                [hv2, mi2] = listFrom[index + 1].children[0].innerText.split(':');
+            }
+            else {
+                [hv2, mi2] = listFrom[index].children[0].innerText.split(':');
+            }
+
+            pereriv = mi2 - mi1 + hv2 * 60 - hv1 * 60;
+        }
+        else {
+            pereriv = 200;
+        }
+
+
+        if (pereriv >= 40 && pereriv < 200) {
             $(selected_item).before("<li class=\"break ftwo\"><div class=\"time-info\">" +
                 "<div class=\"info\">Перерыв " + minDiffFromTime + " минут</div>" +
-                "<div class=\"desc\">Воспользуйтесь общественным транспортом</div></div></li>");
+                "<div class=\"desc\">Воспользуйтесь общественным транспортом &#8594;</div></div></li>");
 
             if (currentTableId === 1) {
                 $(".ftwo").show();
             }
-
         }
         else {
             $(".break ftwo").remove();
         }
+
+        $('li.break').click(function() {
+            $('#Third_page').trigger('click');
+        });
+        $('li.warning').click(function() {
+            $('#Third_page').trigger('click');
+        });
     }
 
     setDate();
-    setInterval(setDate, 10000);
+    setInterval(setDate, 30000);
 });

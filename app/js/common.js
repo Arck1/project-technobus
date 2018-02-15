@@ -12,7 +12,13 @@ var apiObj;
 var  infoList = [];
 var sortedTimeLists = { 'to' : [], 'from' : []};
 var notificationNumber = 0;
+
+//Параметр для включения геолокации
 const isGeoLocationOn = true;
+
+const url = "https://docs.google.com/spreadsheet/pub?key=1VwgzSFxVRu2Z-9tvF8wimO2m3BmuW4ngcST5uGSRYRg&output=html";
+const key = "AIzaSyC6gFH_bbSeMSIzEexKIUQ3MGE1MK2mBdo";
+const spreadsheetId = "1Xdje643qsnGXaOjU70larjh-UFTh6Bt9ii83a7t68Oo";
 
 
 /**
