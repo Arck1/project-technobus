@@ -6,7 +6,9 @@ function transition1(){
     $('#timelineDirection').show();
     $('#first_alt_ways').hide();
     $('#second_alt_ways').hide();
-
+    $('#First_page').attr('class', 'is-active');
+    $('#Second_page').attr('class', '');
+    $('#Third_page').attr('class', '');
 }
 
 function transition2(){
@@ -15,6 +17,9 @@ function transition2(){
     $('.third_page').hide();
     $('#first_alt_ways').hide();
     $('#second_alt_ways').hide();
+    $('#First_page').attr('class', '');
+    $('#Second_page').attr('class', 'is-active');
+    $('#Third_page').attr('class', '');
 
     if (currentTableId == 0){
         $('#first_scheme').show();
@@ -24,7 +29,7 @@ function transition2(){
         $('#first_scheme').hide();
         $('#second_scheme').show();
     }
-    
+
 }
 
 function transition3(){
@@ -32,6 +37,9 @@ function transition3(){
     $('#timelineDirection').hide();
     $('#first_scheme').hide();
     $('#second_scheme').hide();
+    $('#First_page').attr('class', '');
+    $('#Second_page').attr('class', '');
+    $('#Third_page').attr('class', 'is-active');
 
     if (currentTableId == 0){
         $('#first_alt_ways').show();
