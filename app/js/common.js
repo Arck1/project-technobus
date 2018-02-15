@@ -5,12 +5,14 @@ const fullDays = ['fullMonday', 'fullTuesday', 'fullTednesday', 'fullThursday', 
 const inWeekDays = ['Воскресенье', 'Понедельник', 'Вторник', 'Среду', 'Четверг', 'Пятницу', 'Субботу']
 
 var currentTableId = 0;
+var currentWindow = 1;
 var googleSpreadsheet;
 var tableViewer;
 var apiObj;
 var  infoList = [];
 var sortedTimeLists = { 'to' : [], 'from' : []};
 var notificationNumber = 0;
+const isGeoLocationOn = true;
 
 
 /**

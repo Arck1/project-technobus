@@ -28,7 +28,7 @@
 //          $("#route1").css("position", "initial");
 //     });
 // });
-var currentWindow = 1;
+
 
 $(function switchs() {
 

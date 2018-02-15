@@ -1,5 +1,18 @@
+/**
+ * Первичная инициализация
+ */
 $(function () {
-    $("#scheduleList1").hide();
+
+    //Отображение
+    checkGeoLocation();
+    
+    if(currentTableId === 0){
+        $("#scheduleList1").hide();
+    }
+    else {
+        $("#scheduleList0").hide();
+    }
+
     let listTo = $("#scheduleList0").get(0).children;
     let listFrom = $("#scheduleList1").get(0).children;
 
@@ -12,6 +25,9 @@ $(function () {
     lastLi = listFrom[listFrom.length - 1];
     lastLi.className = "warning";
     lastLi.children[1].children[1].innerText = "Всегда есть другие варианты";
+
+
+
 
     if(currentTableId === 0){
         $('#timelineDirection').animate({scrollTop: $("#scheduleList0 li.next").offset().top - $("#scheduleList0").offset().top - 60});
