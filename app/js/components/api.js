@@ -78,7 +78,7 @@ $(function googleApi() {
                 localStorage.setItem(1, JSON.stringify(result));
                 //this.tableViewer.addTableList(result, 1);
             });
-            this.googleSpreadsheetLoad("Объявления", "A:B", (result) => {
+            this.googleSpreadsheetLoad("Info", "A:B", (result) => {
                 this.tableViewer.addInfoList(result);
                 localStorage.setItem('info', JSON.stringify(result));
             });
@@ -95,9 +95,26 @@ $(function googleApi() {
         }
 
         showTimetable(id) {
-            this.tableViewer.addTableList(JSON.parse(localStorage.getItem(0)), 0);
-            this.tableViewer.addTableList(JSON.parse(localStorage.getItem(1)), 1);
-            //this.tableViewer.addTableList(JSON.parse(localStorage.getItem(id)), id);
+            let now = new Date();
+            // now.setDate("17/02/2018");
+            // console.log(now);
+            if(now.getDay() > 0 && now.getDay() < 6){
+                this.tableViewer.addTableList(JSON.parse(localStorage.getItem(0)), 0);
+                this.tableViewer.addTableList(JSON.parse(localStorage.getItem(1)), 1);
+                //this.tableViewer.addTableList(JSON.parse(localStorage.getItem(id)), id);
+            }
+            else {
+                let infoLi = `<li class="next anotherVariants" style="margin-bottom: 110%">
+                                                <div class="time"></div>
+                                                <div class="time-info">
+                                                    <div class="info">В выходные автобусов нет</div>
+                                                    <div class="desc">Воспользуйтесь общественным транспортом &#10095;</div>
+                                                </div>
+                                                 </li>`;
+                $("#scheduleList0").html(infoLi);
+                $("#scheduleList1").html(infoLi);
+            }
+
         }
     }
 
@@ -189,12 +206,8 @@ $(function googleApi() {
                             }
                             else {
                                   shadowClass = 'redline';
-                                specialInfo = "Только в ";
-                                for(let i = 0; i < weekSelect.length; i++){
-                                    if(weekSelect[i].length > 0){
-                                        specialInfo += inWeekDays[(i + 1) % 7] + " ";
-                                    }
-                                }
+                                specialInfo = "Только сегодня";
+
                             }
 
                         }
