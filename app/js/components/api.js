@@ -69,16 +69,16 @@ $(function googleApi() {
          * Сохранение расписания в локальное хранилище
          */
         saveToLocalStorage() {
-            this.googleSpreadsheetLoad("To Technopolis", "A:H", (result) => {
+            this.googleSpreadsheetLoad(ToTecnopolis, rangeTo, (result) => {
                 //console.log(result);
                 localStorage.setItem(0, JSON.stringify(result));
                 //this.tableViewer.addTableList(result, 0);
             });
-            this.googleSpreadsheetLoad("From Technopolis", "A:H", (result) => {
+            this.googleSpreadsheetLoad(FromTechnopolis, rangeFrom, (result) => {
                 localStorage.setItem(1, JSON.stringify(result));
                 //this.tableViewer.addTableList(result, 1);
             });
-            this.googleSpreadsheetLoad("Info", "A:B", (result) => {
+            this.googleSpreadsheetLoad(Info, InfoRange, (result) => {
                 this.tableViewer.addInfoList(result);
                 localStorage.setItem('info', JSON.stringify(result));
             });
@@ -104,13 +104,14 @@ $(function googleApi() {
                 //this.tableViewer.addTableList(JSON.parse(localStorage.getItem(id)), id);
             }
             else {
-                let infoLi = `<li class="next anotherVariants" style="margin-bottom: 110%">
+                let infoLi = `<li class="next anotherVariants">
                                                 <div class="time"></div>
                                                 <div class="time-info">
                                                     <div class="info">В выходные автобусов нет</div>
                                                     <div class="desc">Воспользуйтесь общественным транспортом &#10095;</div>
                                                 </div>
                                                  </li>`;
+                $(".copyright").css("bottom", "50px");
                 $("#scheduleList0").html(infoLi);
                 $("#scheduleList1").html(infoLi);
             }

@@ -3,7 +3,6 @@
 <head>
     <title>Расписание автобусов</title>
     <meta charset="utf-8">
-
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript" >
         (function (d, w, c) {
@@ -34,7 +33,6 @@
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/47713888" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <link rel="stylesheet" href="assets/css/style.min.css" media="all">
     <link rel="stylesheet" href="assets/css/main.css" media="all">
@@ -51,9 +49,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
 
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 </head>
 <body class="rt-body">
-
 <!-- HelloPreload  -->
 <style type="text/css">#hellopreloader > p {
     display: none;
@@ -71,6 +69,7 @@
     background: #000000 url(http://hello-site.ru//main/images/preloads/oval.svg) center center no-repeat;
     background-size: 80px;
 }</style>
+
 <div id="hellopreloader">
     <div id="hellopreloader_preload"></div>
     <p></p></div>
@@ -90,8 +89,9 @@ function fadeOutnojquery(el) {
 window.onload = function () {
     setTimeout(function () {
         fadeOutnojquery(hellopreloader);
-    }, 3);
-};</script>
+    }, 0);
+};
+</script>
 <!-- HelloPreload / -->
 
 <div class="page-wrap">
@@ -109,14 +109,14 @@ window.onload = function () {
         <!--<img class="close" src="assets/images/cross.png" alt="Закрыть">-->
         <div id="left_block"></div>
         <div id="center_block">
-            <label for="output_notification" id="title_notification"></label>
+            <label for="output_notification" id="title_notification">Test Alert</label>
             <p id="output_notification"></p>
         </div>
         <div class="close">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="25px" height="25px" viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">
-<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="7" y1="7" x2="43" y2="43"/>
-<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="43" y1="7" x2="7" y2="43"/>
-</svg>
+                <line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="7" y1="7" x2="43" y2="43"/>
+                <line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="43" y1="7" x2="7" y2="43"/>
+            </svg>
         </div>
 
     </div>
@@ -125,13 +125,9 @@ window.onload = function () {
     <!-- TIMELINE - BEGINS -->
     <section class="timeline-wrap" id="timelineDirection">
 
-        <ul class="timeline" id="scheduleList0">
+        <ul class="timeline" id="scheduleList0"></ul>
+        <ul class="timeline" id="scheduleList1" hidden="hidden"> </ul>
 
-        </ul>
-
-        <ul class="timeline" id="scheduleList1" hidden="hidden">
-
-        </ul>
         <!-- COPYRIGHT - BEGINS -->
         <div class="copyright">
             <p>Made By</p>
@@ -141,26 +137,93 @@ window.onload = function () {
             <p>Updated 05.02.2018</p>
         </div>
         <!-- COPYRIGHT - ENDS -->
+
     </section>
     <!-- TIMELINE - ENDS -->
 
     <!-- SECOND_PAGE - BEGINS -->
-    <div id="first_scheme">
-        <p>Здесь должна быть схема1, у метро</p>
-    </div>
-    <div id="second_scheme">
-        <p>Здесь должна быть схема2, у Технополиса</p>
-    </div>
-    <!-- SECOND_PAGE - BEGINS -->
+    <section class="bus-stop-wrap" id="first_scheme">
+        <div class="bus-stop-map" id="map0">
+
+        </div>
+        <div class="bus-stop-description">
+            <a href="javascript:;" class="map-link">Посмотреть на Карте</a>
+
+            <div class="bus-stop-content">
+                <h3>Посадка от ст. м. "Московская"</h3>
+                ост. "ул. Авиационная"
+
+                <ul class="location-info">
+                    <li><svg class="icon-bus"><use xlink:href="assets/svg/defs.svg#icon-bus"></use></svg> <svg class="icon-logo-technopolis"><use xlink:href="assets/svg/defs.svg#icon-logo-technopolis"></use></svg> </li>
+                    <li><svg class="icon-location"><use xlink:href="assets/svg/defs.svg#icon-location"></use></svg> Московский пр. 189</li>
+                    <li><svg class="icon-phone"><use xlink:href="assets/svg/defs.svg#icon-phone"></use></svg> +7 812 318 0055</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="bus-stop-wrap" id="second_scheme">
+        <div class="bus-stop-map" id="map1">
+
+        </div>
+        <div class="bus-stop-description">
+            <a href="javascript:;" class="map-link">Посмотреть на Карте</a>
+
+            <div class="bus-stop-content">
+                <h3>Посадка от БЦ "Технополис"</h3>
+                У Выхода №2 напротив кафе "LAKKA"
+
+                <ul class="location-info">
+                    <li><svg class="icon-bus"><use xlink:href="assets/svg/defs.svg#icon-bus"></use></svg> <svg class="icon-logo-technopolis"><use xlink:href="assets/svg/defs.svg#icon-logo-technopolis"></use></svg> </li>
+                    <li><svg class="icon-location"><use xlink:href="assets/svg/defs.svg#icon-location"></use></svg> Московский пр. 189</li>
+                    <li><svg class="icon-phone"><use xlink:href="assets/svg/defs.svg#icon-phone"></use></svg> +7 812 318 0055</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+    <!-- SECOND_PAGE - ENDS -->
 
     <!-- THIRD_PAGE - BEGINS -->
-    <div id="first_alt_ways">
-        <p>Здесь должны быть альтернативные маршруты, у метро</p>
-    </div>
-    <div id="second_alt_ways">
+    <section class="map-wrap" id="first_alt_ways">
+        <h3>Общественным Транспортом:</h3>
+        От Остановки  <a href="javascript:;"><svg class="icon-location"><use xlink:href="assets/svg/defs.svg#icon-location"></use></svg>  ст. м. "Московская"</a>
+
+        <h4>Маршрутки:</h4>
+
+        <p class="lead">K-3, К-13, K-18, K-39, K-213, K-290, K-403, K-449</p>
+
+        <h4>Автобусы:</h4>
+
+        <p class="lead">13, 39, 90, 150, 155, 187, 301</p>
+
+        <ul class="map">
+            <li class="is-disabled">ост. "ул. Авиационная"</li>
+            <li>ост. "метро Московская"</li>
+            <li>ост. "ТЦ Metro"
+                <span class="note">пеш.переход через Пулковское ш.</span>
+            </li>
+            <li class="final-stop">
+                <span class="note">Пешком 10 мин на юг</span>
+                БЦ "Технополис"
+            </li>
+        </ul>
+
+
+        <h3>БЦ "Технополис":</h3>
+
+        <ul class="location-info">
+            <li><a href="javascript:;"><svg class="icon-location"><use xlink:href="assets/svg/defs.svg#icon-location"></use></svg> Пулковское ш. 40/4</a></li>
+            <li><svg class="icon-phone"><use xlink:href="assets/svg/defs.svg#icon-phone"></use></svg> +7 812 318 0055</li>
+        </ul>
+
+    </section>
+
+    <section  class="map-wrap" id="second_alt_ways">
         <p>Здесь должны быть альтернативные маршруты, у Технополиса</p>
-    </div>
-    <!-- THIRD_PAGE - BEGINS -->
+    </section>
+    <!-- THIRD_PAGE - ENDS -->
 
     <footer>
         <!-- EXTRA NAVIGATION - BEGINS -->
@@ -182,9 +245,11 @@ window.onload = function () {
             </a>
         </nav>
         <!-- EXTRA NAVIGATION - ENDS -->
-
     </footer>
+
 </div>
+
+
 
 </body>
 <script src="js/scripts.min.js"></script>

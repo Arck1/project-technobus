@@ -29,36 +29,51 @@
 //     });
 // });
 
+function showMap() {
+    if (currentTableId === 0) {
+        $('#map0').html('<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A7757fad0712b0a44ffbabf020dc68752cea4c3c876db47744728c731e6c3051c&amp;width=' + $('#map0').width() + '&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>');
+    } else {
+        $('#map1').html('<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Afcd18ec223d5d71ebccdb36407f7f14715e6a207a5455b0d3bfad2ed86a2f2b1&amp;width=' + $('#map1').width() + '&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>');
+    }
+}
+
+$(window).resize(function () {
+    if (currentWindow === 2) {
+        showMap();
+    }
+});
 
 $(function () {
 
-    $('#First_page').click(function(){
+
+    $('#First_page').click(function () {
         currentWindow = 1;
-        if (currentTableId == 0){
+        if (currentTableId == 0) {
             $('#toTechn').trigger('click');
         }
-        else if (currentTableId == 1){
+        else if (currentTableId == 1) {
             $('#toMetro').trigger('click');
         }
     });
 
-    $('#Second_page').click(function(){
+    $('#Second_page').click(function () {
         currentWindow = 2;
+        showMap();
     });
 
-    $('#Third_page').click(function(){
+    $('#Third_page').click(function () {
         currentWindow = 3;
     });
 
 
-
     $("#toTechn").click(function () {
         currentTableId = 0;
+
         $("#toTechn").addClass("is-active");
         $("#toMetro").removeClass("is-active");
         $("#timelineDirection").removeClass("tube");
 
-        if (currentWindow == 1){
+        if (currentWindow == 1) {
             transition1();
 
             $("#scheduleList1").hide();
@@ -72,8 +87,11 @@ $(function () {
 
             $('#timelineDirection').animate({scrollTop: $("#scheduleList0 li.next").offset().top - $("#scheduleList0").offset().top - 60});
         }
-        else if (currentWindow == 2)
+        else if (currentWindow == 2){
             transition2();
+            showMap();
+        }
+
         else if (currentWindow == 3)
             transition3();
 
@@ -95,7 +113,7 @@ $(function () {
         $("#toTechn").removeClass("is-active");
         $("#timelineDirection").addClass("tube");
 
-        if (currentWindow == 1){
+        if (currentWindow == 1) {
             transition1();
 
             $("#scheduleList1").show();
@@ -103,8 +121,11 @@ $(function () {
 
             $('#timelineDirection').animate({scrollTop: $("#scheduleList1 li.next").offset().top - $("#scheduleList1").offset().top - 60});
         }
-        else if (currentWindow == 2)
+        else if (currentWindow == 2) {
             transition2();
+            showMap();
+        }
+
         else if (currentWindow == 3)
             transition3();
         // let b = $("#scheduleList1 .success");

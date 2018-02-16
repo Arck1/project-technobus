@@ -20,7 +20,15 @@ const isGeoLocationOn = true;
 const key = "AIzaSyAl9aZAZCbOAYhUl0RH57S9cnAPMnG3LLs";
 const spreadsheetId = "10db0NtOmOC5TLw0WBuzFCGtoVa1GaFYDeUqIADh6p1E";
 
+//Параметры для запросов
+const ToTecnopolis = "To Technopolis";
+const rangeTo = "A:H";
 
+const FromTechnopolis = "From Technopolis";
+const rangeFrom = "A:H";
+
+const Info = "Info";
+const InfoRange = "A:B";
 /**
  * Установка языка сайта
  * @param {string} lang Пользовательская локаль

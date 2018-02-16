@@ -40,7 +40,8 @@ $(function () {
         let index = 0;
         let minDiffFromTime = 90000;
         let time = new Date();
-        // time.setHours(6);
+        // time.setDate("17/02/2018");
+        // time.setHours(22);
         // time.setMinutes(50);
 
         if(time.getDay() > 0 && time.getDay() < 6) {

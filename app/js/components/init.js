@@ -6,7 +6,7 @@ $(function () {
     //проверка геопозиции
     checkGeoLocation();
 
-
+    //showMap();
     //первичное отображение таблицы, в зависимости от заданной стартовой
     if(currentTableId === 0){
         $("#scheduleList1").hide();
