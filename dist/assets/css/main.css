@@ -1,35 +1,3 @@
-#notification {
-    display: flex;
-    flex-direction: row;
-    z-index: 200;
-    position: fixed;
-    top: 48px;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
-    background: rgb(237, 194, 39);
-}
-
-#center_block {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 80%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    justify-content: space-around;
-
-}
-
-.close {
-    margin-right: 4%;
-}
-
-#left_block {
-    margin-right: 4%;
-}
-
-/* ------------------------ */
 
 #first_scheme, #second_scheme {
     display: none;
@@ -59,8 +27,7 @@ li.redline {
     background: #F5F5F5;
     color: rgb(232, 5, 10)
 }
-
-/*hot-fix*/
-.bus-stop-wrap {
-    overflow-y: scroll;
+#cache-0map, #cache-1map{
+    width: 100%;
+    height: 304px;
 }
